@@ -3,3 +3,6 @@ System.out.println("Is the text visible? " + page.locator("text=Your Specific St
 
 page.locator("button").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE)).click();
 
+page.getByRole("button", new Page.GetByRoleOptions().setName("Button Name")).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE)).click();
+
+
