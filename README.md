@@ -6,3 +6,7 @@ page.locator("button").waitFor(new Locator.WaitForOptions().setState(WaitForSele
 page.getByRole("button", new Page.GetByRoleOptions().setName("Button Name")).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE)).click();
 
 
+page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Heading Name")).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE)).click();
+
+
+
