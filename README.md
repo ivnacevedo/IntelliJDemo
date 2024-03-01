@@ -25,4 +25,12 @@ for (int i = 0; i < rows.count(); i++) {
 }
 
 
+String[] tableHeaders = page.locator("yourTableSelector > thead > tr:first-child > th").allInnerTexts();
+
+            // Print out the table headers
+            System.out.println("Table Headers:");
+            for (String header : tableHeaders) {
+                System.out.println(header);
+            }
+
 ```
