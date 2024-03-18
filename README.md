@@ -36,19 +36,16 @@ String[] tableHeaders = page.locator("yourTableSelector > thead > tr:first-child
 
 
 // Example: Extract href attributes from all links on the page
-List<String> links = page.querySelectorAll("a").stream()
+// Use Collectors.toList() for compatibility with Java 8 and later
+            List<String> links = page.querySelectorAll("a").stream()
                     .map(link -> link.getAttribute("href"))
-                    .toList();
+                    .collect(Collectors.toList());
 
-            List<String> extractedData = new ArrayList<>();
             for (String link : links) {
                 page.navigate(link);
                 // Extract data from the page. Modify the selector as per your needs.
                 String data = page.textContent("selector-for-your-data"); // Change the selector accordingly
-                extractedData.add(data);
+                System.out.println(data);
             }
-
-            // Process the extracted data
-            extractedData.forEach(System.out::println);
 
 ```
