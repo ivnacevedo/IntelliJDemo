@@ -48,4 +48,24 @@ String[] tableHeaders = page.locator("yourTableSelector > thead > tr:first-child
                 System.out.println(data);
             }
 
+
+
+
+// Perform assertions
+safeAssert(() -> assertThat(page.locator("selector-for-the-element")).hasText("Expected text"));
+safeAssert(() -> assertThat(page.locator("another-selector")).isVisible());
+
+
+    // Utility method for safe assertions
+    private static void safeAssert(Runnable assertion) {
+        try {
+            assertion.run();
+        } catch (AssertionError e) {
+            System.out.println("Assertion failed: " + e.getMessage());
+            // Optionally log the error or perform other actions
+        }
+    }
+}
+
+
 ```
