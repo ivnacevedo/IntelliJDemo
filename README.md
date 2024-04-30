@@ -68,4 +68,44 @@ safeAssert(() -> assertThat(page.locator("another-selector")).isVisible());
 }
 
 
+# Load the required assembly
+[System.Reflection.Assembly]::LoadWithPartialName("System.Net.Mail") | Out-Null
+
+# Set the email parameters
+$smtpServer = "smtp.example.com"
+$smtpPort = 587 # Adjust as needed
+$smtpUser = "username@example.com"
+$smtpPassword = "your_password"
+
+$from = "sender@example.com"
+$to = "recipient@example.com"
+$subject = "Email Subject"
+$body = "This is the email body."
+$attachment = "C:\Path\To\File.pdf"
+
+# Create a new email message
+$message = New-Object System.Net.Mail.MailMessage
+$message.From = $from
+$message.To.Add($to)
+$message.Subject = $subject
+$message.Body = $body
+
+# Add an attachment
+$attachment = New-Object System.Net.Mail.Attachment($attachment)
+$message.Attachments.Add($attachment)
+
+# Create an SMTP client
+$smtp = New-Object System.Net.Mail.SmtpClient($smtpServer, $smtpPort)
+$smtp.Credentials = New-Object System.Net.NetworkCredential($smtpUser, $smtpPassword)
+$smtp.EnableSsl = $true # Adjust as needed
+
+# Send the email
+try {
+    $smtp.Send($message)
+    Write-Output "Email sent successfully."
+}
+catch {
+    Write-Error "Failed to send email: $($_.Exception.Message)"
+}
+
 ```
